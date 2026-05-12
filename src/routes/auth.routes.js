@@ -1,20 +1,18 @@
-import Router from 'express';
+import Router from 'express'
+import signUpController from '../controllers/auth/signUpController.js'
+import sigInController from '../controllers/auth/signInController.js'
+import signUpValidation from '../middlewares/auth/signUpValidation.js'
+import signInValidation from '../middlewares/auth/signInValidation.js'
 
-const authRouter = Router();
+const authRouter = Router()
 
-authRouter.post('/sign-up', (req, res) => {
-    // Handle user registration
-    res.send('Signup endpoint');
-});
+authRouter.post('/sign-up', signUpValidation, signUpController)
 
-authRouter.post('/sign-in', (req, res) => {
-    // Handle user login
-    res.send('Login endpoint');
-});
+authRouter.post('/sign-in', signInValidation, sigInController)
 
 authRouter.post('/sign-out', (req, res) => {
-    // Handle user logout
-    res.send('Logout endpoint');
-});
+  // Handle user logout
+  res.send('Logout endpoint')
+})
 
-export default authRouter;
+export default authRouter
