@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const sigInController = (req, res) => {
+const signInController = (req, res) => {
   const user = req.user
 
   try {
@@ -19,4 +19,4 @@ const sigInController = (req, res) => {
   }
 }
 
-export default sigInController
+export default signInController

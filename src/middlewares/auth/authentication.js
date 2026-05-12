@@ -6,7 +6,7 @@ const authentication = async (req, res, next) => {
   if (!authorization) {
     return res
       .status(401)
-      .json({ success: false, error: { message: 'Unathorized' } })
+      .json({ success: false, error: { message: 'Unauthorized' } })
   }
 
   const token = authorization.split(' ')[1]
