@@ -1,9 +1,9 @@
 import User from '../../models/userModel.js'
 
 const signUpValidation = async (req, res, next) => {
-  const { email, password, role } = req.body
+  const { email, password } = req.body
 
-  if (!email?.trim() || !password?.trim() || !role?.trim()) {
+  if (!email?.trim() || !password?.trim()) {
     return res
       .status(400)
       .json({ success: false, error: { message: 'all fields are required' } })
@@ -17,20 +17,20 @@ const signUpValidation = async (req, res, next) => {
       .json({ success: false, error: { message: 'invalid email format' } })
   }
 
-  if (password?.trim().length !== 8) {
+  if (password.trim().length < 8) {
     return res.status(400).json({
       success: false,
       error: { message: 'password must not be less than 8 characters' }
     })
   }
 
-  const acceptableRoles = ['ADMIN', 'STAFF', 'USER']
-  if (!acceptableRoles.includes(role?.trim().toUpperCase())) {
-    return res.status(400).json({
-      success: false,
-      error: { message: 'role must either be ADMIN, STAFF or USER' }
-    })
-  }
+  // const acceptableRoles = ['STAFF', 'USER']
+  // if (!acceptableRoles.includes(role?.trim().toUpperCase())) {
+  //   return res.status(400).json({
+  //     success: false,
+  //     error: { message: 'role must either be ADMIN, STAFF or USER' }
+  //   })
+  // }
 
   try {
     const existingUser = await User.findOne({ email })
