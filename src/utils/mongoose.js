@@ -1,19 +1,18 @@
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import { DB_URI } from './env.js';
 
-dotenv.config({
-  path: '.env.development.local',
-});
+if (!DB_URI) {
+    throw new Error('Database URI is not defined');
+}
 
-const connectDB = async () => {
+const connectToDatabase = async () => {
   try {
-    await mongoose.connect(process.env.DB_URI);
-
-    console.log('Database connected successfully');
+    await mongoose.connect(DB_URI);
+    console.log('Connected to MongoDB');
   } catch (error) {
-    console.error(error.message);
+    console.log('Error connecting to MongoDB: ', error);
     process.exit(1);
   }
-};
+}
 
-export default connectDB;
+export default connectToDatabase;
