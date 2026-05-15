@@ -3,11 +3,9 @@ import mongoose from 'mongoose';
 const employeeProfileSchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-      unique: true,
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+   },
 
     firstName: {
       type: String,
