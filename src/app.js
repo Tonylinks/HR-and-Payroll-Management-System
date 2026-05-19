@@ -12,6 +12,7 @@ import authRouter from './routes/auth.routes.js';
 import departmentRoutes from './routes/departmentRoutes.js';
 import employeeRoutes from './routes/employeeProfileRoutes.js';
 import hrRoutes from './routes/hrRoutes.js';
+import payrollRoutes from './routes/payroll.routes.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 import cookieParser from 'cookie-parser';
 
@@ -33,6 +34,8 @@ app.use('/api/departments', departmentRoutes);
 app.use('/api/employees', employeeRoutes);
 
 app.use('/api/hr', hrRoutes);
+
+app.use('/api/payroll', payrollRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the HR and Payroll Management System API');
